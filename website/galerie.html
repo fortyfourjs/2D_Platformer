@@ -3,10 +3,11 @@
     <head>
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Clinica Vitalis</title>
+    <title>Clinica Vitalis - Galerie</title>
     
     <!--fisier style-->
     <link rel="stylesheet" href="./style.css">
+ 
 
     <!--font cdn-->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css">
@@ -35,28 +36,53 @@
 
         <div class=""></div> <!--pictograma meniu-->
     </header>
+    <!--galerie-->
+    <div class="slideshow-container">
 
-    <!--home -->
-    <section id="home" class="home"> 
-
-        <div class="row">
-            <!--imagine-->
-            <div class="images">
-                <img src="./images/home.png" alt=""> 
-            </div>
-
-            <!--header-->
-            <div class="content">
-                <h1><span>Sanatatea</span> ta, <span>prioritatea</span> noastra.</h1>
-                <p>Clinica Vitalis este un centru medical modern, dedicat oferirii de servicii medicale de calitate superioară, într-un mediu prietenos și sigur. Înființată în anul 2015, clinica noastră a devenit un reper de încredere pentru comunitatea locală, oferind consultații, analize și tratamente într-o gamă variată de specializări. </p>
-                <a href="./servicii.html"><button class ="button">Citeste mai mult</button></a>
-            </div>
-
+        <div class="mySlides">
+            <div class="numbertext">1/6</div>
+            <img src="./images/waitingroom.png" style="width:100%">
+            <div class="text">Sala de asteptare</div>
         </div>
-    </section>
-    <!--home-->
 
+        <div class="mySlides">
+            <div class="numbertext">2/6</div>
+            <img src="./images/consult.png" style="width:100%">
+            <div class="text">Consult</div>
+        </div>
 
+        <div class="mySlides">
+            <div class="numbertext">3/6</div>
+            <img src="./images/cardiologie.png" style="width:100%">
+            <div class="text">Cardiologie</div>
+        </div>
+
+        <div class="mySlides">
+            <div class="numbertext">4/6</div>
+            <img src="./images/salon.png" style="width:100%">
+            <div class="text">Camera</div>
+        </div>
+
+        <a class="prev" onclick="plusSlides(-1)">&#10094;</a>
+        <a class="next" onclick="plusSlides(1)">&#10095;</a>
+    </div>
+    <br>
+
+    <div style="text-align:center">
+        <span class="dot" onclick="currentSlide(1)"></span>
+        <span class="dot" onclick="currentSlide(2)"></span>
+        <span class="dot" onclick="currentSlide(3)"></span>
+        <span class="dot" onclick="currentSlide(4)"></span>
+        
+
+    </div>
+
+    <div class ="descriere-galerie">
+        <h2>Clinica Vitalis - Un mediu modern si primitor</h2>
+        <p>Galeria noastra va ofera o privire asupra spatiilor noastre poriectate cu grija pentru confortul si sigura pacientilor. Fiecare zona a clinicii
+             a fost proiectata pentru a asigura cele mai bune conditii de tratament si recuperare</p>
+        <p>Navigati prin galerie pentru a desecoperi atmosfera clinicii noastre.</p>
+    </div>
 
 
     <section class="footer">
@@ -81,11 +107,7 @@
         </div>
     </section>
 
-
-
-
    
-
 
 
 
