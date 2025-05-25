@@ -189,7 +189,7 @@ header .fa-bars{
     transition: all 0.35s;
 }
 .tab input:checked ~ .tab__content{
-    max-height: 20rem;
+    max-height: 30rem;
 }
 .accordion{
     color: var(--blue);
@@ -249,13 +249,20 @@ header .fa-bars{
 
 
 .servicii .row .title{
-    text-align: center;
+    text-align: right;
     padding: 2rem 1rem;
     font-size: 2.5rem;
     color: var(--black);
     font-weight: 300;
-    margin-top: -60rem;
+    margin-top: -40rem;
     
+}
+.servicii .row p{
+    text-align: center;
+    padding: 2rem 1rem;
+    font-size: 1.5rem;
+    color: var(--black);
+    font-weight: 300;
 }
 
 /*chenar medic*/
