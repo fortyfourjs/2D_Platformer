@@ -1,0 +1,318 @@
+
+@import url('https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100..900;1,100..900&display=swap');
+
+
+:root{
+    --blue:#0188df;
+    --black:#444d53;
+    --white:#fff;
+}
+
+
+*{
+    font-family: "Roboto", sans-serif;
+    margin: 0; padding: 0;
+    text-decoration: none;
+    text-transform: initial;
+    outline: none;
+    box-sizing: border-box;
+    transition: all linear;
+}
+
+html{
+    font-size: 80%;
+    
+}
+/* buton citeste */
+.button{
+    height: 3.5rem;
+    width: 15rem;
+    background: var(--blue);
+    color: var(--white);
+    font-size: 1.7rem;
+    text-transform:initial;
+    border-radius: .5rem;
+    cursor: pointer;
+    margin: 1rem 0;
+    border: .1rem solid var(--blue);
+
+}
+.button:hover{
+    border: .1rem solid var(--blue);
+    background: var(--white);
+    color: var(--blue);
+
+}
+
+/* buton citeste */
+
+/* header navbar */
+
+header{
+    width: 90%;
+    background: var(--white);
+    position: fixed;
+    top: 2rem;
+    left: 50%;
+    transform: translate(-50%);
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 1rem 2rem;
+    z-index: 1000;
+}
+/* header navbar */
+
+/* logo */
+header a{
+    color: var(--black);
+}
+
+header a:hover{
+    color: var(--blue);
+}
+
+header .logo{
+    font-size: 3rem;
+}
+
+header .logo span{
+    color: var(--blue);
+}
+/* logo */
+
+/* navbar */
+header .navbar ul{
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    list-style: none;
+}
+
+header .navbar ul li{
+    margin: 0 1rem;
+}
+
+header .navbar ul li a{
+    font-size: 2rem;
+    color: var(--black);
+}
+
+header .navbar ul li a:hover{
+    color: var(--blue);
+}
+
+header .fa-bars{
+    font-size: 3rem;
+    color: var(--blue);
+    cursor: pointer;
+   
+}
+/* navbar */
+
+/*home */
+.home{
+    min-height: 100vh;
+    padding-top: 10rem;
+}
+.home .row{
+    display: flex;
+    align-items: center;
+    justify-content: space-around;
+    width: 85%;
+    margin: 0 auto;
+}
+/*home */
+
+
+/*imagine home*/
+.home .row .images img{
+    height: 75vh;
+}
+
+.home .content h1{
+    font-size: 4rem;
+    color: var(--black);
+}
+
+.home .content h1 span{
+    color: var(--blue);
+
+}
+
+.home .content p{
+    font-size: 1.5rem;
+    color: var(--black);
+    text-transform: initial;
+
+}
+/*imagine home*/
+
+/*imagine servicii*/
+.servicii .row .images img{
+    height: 75vh;
+    padding: 5rem;
+}
+
+.servicii .content h1{
+    font-size: 4rem;
+    color: var(--black);
+}
+
+.servicii .content h1 span{
+    color: var(--blue);
+
+}
+
+.servicii .content p{
+    font-size: 1.5rem;
+    color: var(--black);
+    text-transform: initial;
+
+}
+/*imagine servicii*/
+
+/*servicii*/
+
+.tab {
+    position:relative;
+}
+.tab input{
+    position:absolute;
+    opacity: 0;
+    z-index: -1;
+}
+.tab__content{
+    max-height: 0;
+    overflow: hidden;
+    transition: all 0.35s;
+}
+.tab input:checked ~ .tab__content{
+    max-height: 20rem;
+}
+.accordion{
+    color: var(--blue);
+    border: 2px solid;
+    border-radius: 0.5rem;
+    overflow: hidden;
+    max-width: 900px;
+    margin: 0 auto;
+}
+.tab__label,
+.tab__close{
+    display: flex;
+    color: var(--white);
+    background: var(--blue);
+    cursor: pointer;
+
+}
+.tab__label{
+    font-size: 2rem;
+    justify-content: space-between;
+    padding: 1.5rem;
+}
+.tab__label::after{
+    content: "\276F";
+    width: 1em;
+    height: 1em;
+    text-align: center;
+    transform: rotate(90deg);
+    transition: all 0.35s;
+}
+.tab__content p{
+    font-size: 1.8rem;
+    margin: 0;
+    padding: 1.5rem;
+}
+.tab__close{
+    justify-content: flex-end;
+    padding: 0.5rem 1em;
+    font-size: 0.75rem;
+}
+/*servicii*/
+
+/*animatie sageata*/
+.tab input:not(:checked) + .tab__label:hover::after{
+    animation: bounce .5s infinite;
+}
+@keyframes bounce{
+    25%{
+        transform: rotate(90deg) translate(.25rem);
+    }
+    75%{
+        transform:rotate(90deg) translate(-.25rem);
+    }
+}
+
+/*animatie sageata*/
+
+
+.servicii .row .title{
+    text-align: center;
+    padding: 2rem 1rem;
+    font-size: 2.5rem;
+    color: var(--black);
+    font-weight: 300;
+    margin-top: -60rem;
+    
+}
+
+/*chenar medic*/
+.card .container h1{
+    text-align: left;
+    margin-top: 10em;
+    margin-left: 20rem;
+    font-weight: 300;
+    font-size: 2rem;
+    
+}
+.card .container h1:hover{
+    color: var(--blue)
+}
+.card .box-container{
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+    padding: 2rem;
+}
+
+.card .box-container .box{
+    width: 30rem;
+    margin: 2rem 1rem;
+    overflow: hidden;
+    border-radius: .5rem;
+    box-shadow: 0 .3rem .5rem rgba(0, 0, 0, .3);
+}
+.card .box-container .box img{
+    height: 40rem;
+    width: 100%;
+    object-fit: cover;
+}
+.card .box-container .box .content{
+    padding: 1rem 1.3rem;
+}
+.card .box-container .box .content h2{
+    font-size: 2rem;
+    text-align: center;
+    color: var(--black);
+}
+.card .box-container .box .content h2:hover{
+    color: var(--blue);
+    
+}
+.card .box-container .box .content p{
+    font-size: 1.7rem;
+    text-align: center;
+    color: var(--black);
+    
+}
+.card .box-container .box .content .icons{
+    text-align: center;
+}
+.card .box-container .box .content .icons a{
+    font-size: 2rem;
+    color: var(--blue);
+    text-align: center;
+    margin: 1rem;
+}
+/*chenar medic*/
