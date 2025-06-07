@@ -94,13 +94,16 @@ int main()
     int total_caractere = valori_total_caractere();
     
 
-    u_int16_t lfsr = 0x10101;
+    u_int16_t lfsr = 0xACE1u;
+    int nr_alfabetice = min_alfabetice + (lfsr % (max_alfabetice - min_alfabetice) +1);
+
     int password_length = total_caractere;
+
     std::string parola_alfabetice;
     std::string parola_numerice;
     std::string parola_speciale;
 
-    for(int i = 0; i < max_alfabetice; i++)
+    for(int i = 0; i < nr_alfabetice; i++)
     {
         lfsr = new_lfsr(lfsr);
         char ch = static_cast<char>(litere[lfsr % litere.size()]);
