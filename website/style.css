@@ -249,7 +249,7 @@ header .fa-bars{
 
 
 .servicii .row .title{
-    text-align: right;
+    text-align: center;
     padding: 2rem 1rem;
     font-size: 2.5rem;
     color: var(--black);
