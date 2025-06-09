@@ -78,6 +78,27 @@ int interval_separator()
 
     return nr_separator;
 }
+int alegere_nr_alfabetice(int lfsr, int min_alfabetice, int max_alfabetice) 
+{
+    if(min_alfabetice == max_alfabetice) 
+        return min_alfabetice;
+    else
+        return min_alfabetice + (lfsr % (max_alfabetice - min_alfabetice) + 1);
+}
+int alegere_nr_numerice(int lfsr, int min_numerice, int max_numerice)
+{
+    if(min_numerice == max_numerice)
+        return min_numerice;
+    else
+        return min_numerice + (lfsr % (max_numerice - min_numerice) + 1);
+}
+int alegere_nr_speciale(int lfsr, int min_speciale, int max_speciale)
+{
+    if(min_speciale == max_speciale)
+        return min_speciale;
+    else
+        return min_speciale + (lfsr % (max_speciale - min_speciale) + 1);
+}
 
 
 int main()
@@ -104,13 +125,26 @@ int main()
     int nr_separator = interval_separator();
     char separator = '-';
     
-    /*u_int16_t lfsr = 0xACE1u; seed initial, aceleasi rezultate*/
+    /* u_int16_t lfsr = 0xACE1u; */ // seed initial, aceleasi rezultate 
     u_int16_t lfsr = static_cast<u_int16_t>(time(nullptr)); //seedul devine ora actuala in secunde.rezultatele difera de fiecare data
-    int nr_alfabetice = min_alfabetice + (lfsr % (max_alfabetice - min_alfabetice) +1); //alege un numar intre min si max
-    int nr_numerice   = min_numerice   + (lfsr % (max_numerice   - min_numerice)  + 1);
-    int nr_speciale   = min_speciale   + (lfsr % (max_speciale   - min_speciale)  + 1);
+    int nr_alfabetice = alegere_nr_alfabetice(lfsr, min_alfabetice, max_alfabetice);
+    int nr_numerice = alegere_nr_numerice(lfsr, min_numerice, max_numerice);
+    int nr_speciale = alegere_nr_speciale(lfsr, min_speciale, max_speciale);
 
-    int password_length = total_caractere;
+
+
+    if(total_caractere < min_alfabetice + min_numerice + min_speciale)//erori introducere date
+    {
+        std::cout << "Valorile minime introduse depasesc lungimea parolei \n";
+
+        return 1;
+    }
+    if(total_caractere > max_alfabetice + max_numerice + max_speciale)//erori introducere date
+    {
+        std::cout << "Lungimea parolei este mai mare decat valorile maxime introduse \n";
+
+        return 1;
+    }
 
     std::string parola_alfabetice;
     std::string parola_numerice;
@@ -137,17 +171,24 @@ int main()
         parola_speciale += ch;
     }
 
-    if(password_length > max_alfabetice + max_numerice + max_speciale)
-    {
-        std::cout <<"Parola invalida" << '\n';
-    }
+   
 
 
     std::cout << "parola generata: " << parola_alfabetice << '\n';
     std::cout << "parola numerice: " << parola_numerice << '\n';
     std::cout << "parola speciale: " << parola_speciale << '\n';
     std::string parola = parola_alfabetice + parola_numerice + parola_speciale; 
-    std::random_shuffle(parola.begin(), parola.end()); //trebuie schimbat random_shuffle
+
+     
+    for (int i = parola.size() - 1; i > 0; i--)
+    {
+        lfsr = fct_lfsr(lfsr);
+        int j = lfsr % (i + 1);
+        
+        char temp = parola[i];
+        parola[i] = parola[j];
+        parola[j] = temp;
+    }
 
 
 
