@@ -145,6 +145,13 @@ int main()
 
         return 1;
     }
+    
+    int nr_parole;
+    std::cout << "Cate parole doresti sa generezi?" << '\n';
+    std::cin >> nr_parole;
+    
+    for(int i = 0; i < nr_parole; ++i)
+    {
 
     std::string parola_alfabetice;
     std::string parola_numerice;
@@ -174,9 +181,7 @@ int main()
    
 
 
-    std::cout << "parola generata: " << parola_alfabetice << '\n';
-    std::cout << "parola numerice: " << parola_numerice << '\n';
-    std::cout << "parola speciale: " << parola_speciale << '\n';
+    
     std::string parola = parola_alfabetice + parola_numerice + parola_speciale; 
 
      
@@ -193,6 +198,6 @@ int main()
 
 
 
-    std::cout << parola;
-    
+    std::cout << "parola nr." << i + 1 << ": "<< parola << '\n';
+    }  
 }
