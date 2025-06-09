@@ -2,7 +2,7 @@
 #include <vector>
 #include <algorithm>
 
-u_int16_t new_lfsr(u_int16_t lfsr)
+u_int16_t fct_lfsr(u_int16_t lfsr)
 {
     u_int16_t bit = ((lfsr >> 0) ^ (lfsr >> 2) ^ (lfsr >> 3) ^ (lfsr >> 5)) & 1;
     return (lfsr >> 1) | (bit << 15);
@@ -70,6 +70,15 @@ int valori_total_caractere()
     return total_caractere;
 }
 
+int interval_separator()
+{
+    int nr_separator;
+    std::cout << "Seteaza un separator: " << '\n';
+    std::cin >> nr_separator;
+
+    return nr_separator;
+}
+
 
 int main()
 {
@@ -92,12 +101,14 @@ int main()
     int min_speciale = valori_min_speciale();
     int max_speciale = valori_max_speciale();
     int total_caractere = valori_total_caractere();
+    int nr_separator = interval_separator();
+    char separator = '-';
     
-
-    u_int16_t lfsr = static_cast<u_int16_t>(time(nullptr)); //seedul devine ora actuala in secunde.se schimba de fiecare data.
+    /*u_int16_t lfsr = 0xACE1u; seed initial, aceleasi rezultate*/
+    u_int16_t lfsr = static_cast<u_int16_t>(time(nullptr)); //seedul devine ora actuala in secunde.rezultatele difera de fiecare data
     int nr_alfabetice = min_alfabetice + (lfsr % (max_alfabetice - min_alfabetice) +1); //alege un numar intre min si max
-    int nr_numerice = min_numerice + (lfsr % (max_numerice - min_numerice) + 1);
-    int nr_speciale = min_speciale + (lfsr % (max_speciale - min_speciale) + 1);
+    int nr_numerice   = min_numerice   + (lfsr % (max_numerice   - min_numerice)  + 1);
+    int nr_speciale   = min_speciale   + (lfsr % (max_speciale   - min_speciale)  + 1);
 
     int password_length = total_caractere;
 
@@ -107,30 +118,40 @@ int main()
 
     for(int i = 0; i < nr_alfabetice; i++)
     {
-        lfsr = new_lfsr(lfsr);
+        lfsr = fct_lfsr(lfsr);
         char ch = static_cast<char>(litere[lfsr % litere.size()]);
         parola_alfabetice += ch;
     }
 
     for(int i = 0; i < nr_numerice; i++)
     {
-        lfsr = new_lfsr(lfsr);
+        lfsr = fct_lfsr(lfsr);
         char ch = static_cast<char>(cifre[lfsr % cifre.size()]);
         parola_numerice += ch;
     }
 
     for(int i = 0; i < nr_speciale; i++)
     {
-        lfsr = new_lfsr(lfsr);
+        lfsr = fct_lfsr(lfsr);
         char ch = static_cast<char>(speciale[lfsr % speciale.size()]);
         parola_speciale += ch;
     }
+
+    if(password_length > max_alfabetice + max_numerice + max_speciale)
+    {
+        std::cout <<"Parola invalida" << '\n';
+    }
+
 
     std::cout << "parola generata: " << parola_alfabetice << '\n';
     std::cout << "parola numerice: " << parola_numerice << '\n';
     std::cout << "parola speciale: " << parola_speciale << '\n';
     std::string parola = parola_alfabetice + parola_numerice + parola_speciale; 
     std::random_shuffle(parola.begin(), parola.end()); //trebuie schimbat random_shuffle
+
+
+
+
     std::cout << parola;
     
 }
