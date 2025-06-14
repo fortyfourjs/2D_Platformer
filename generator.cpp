@@ -100,6 +100,14 @@ int alegere_nr_speciale(int lfsr, int min_speciale, int max_speciale)
         return min_speciale + (lfsr % (max_speciale - min_speciale) + 1);
 }
 
+int nr_parole_generate()
+{
+    int nr_parole;
+    std::cout << "Cate parole doresti sa generezi?" << '\n';
+    std::cin >> nr_parole;
+    
+    return nr_parole;
+}
 
 int main()
 {
@@ -146,13 +154,11 @@ int main()
         return 1;
     }
     
-    int nr_parole;
-    std::cout << "Cate parole doresti sa generezi?" << '\n';
-    std::cin >> nr_parole;
+    int nr_parole = nr_parole_generate();
     
+  
     for(int i = 0; i < nr_parole; ++i)
     {
-
     std::string parola_alfabetice;
     std::string parola_numerice;
     std::string parola_speciale;
@@ -178,14 +184,9 @@ int main()
         parola_speciale += ch;
     }
 
-   
-
-
-    
     std::string parola = parola_alfabetice + parola_numerice + parola_speciale; 
 
-     
-    for (int i = parola.size() - 1; i > 0; i--)
+    for (int i = parola.size() - 1; i > 0; i--) //lfsr pe parola finala
     {
         lfsr = fct_lfsr(lfsr);
         int j = lfsr % (i + 1);
@@ -194,9 +195,6 @@ int main()
         parola[i] = parola[j];
         parola[j] = temp;
     }
-
-
-
 
     std::cout << "parola nr." << i + 1 << ": "<< parola << '\n';
     }  
