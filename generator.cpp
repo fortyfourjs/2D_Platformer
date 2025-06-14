@@ -109,6 +109,21 @@ int nr_parole_generate()
     return nr_parole;
 }
 
+std::string fct_separator(std::string parola, char separator, int nr_separator)
+{
+    std::string parola_finala;
+
+    for(int i = 0; i < parola.size(); i++)
+    {
+        parola_finala += parola[i];
+        if((i + 1) % nr_separator == 0 && (i + 1) != parola.size())
+        {
+            parola_finala += separator;
+        }
+    }
+    return parola_finala;
+}
+
 int main()
 {
     std::vector<int> litere;
@@ -137,9 +152,14 @@ int main()
     u_int16_t lfsr = static_cast<u_int16_t>(time(nullptr)); //seedul devine ora actuala in secunde.rezultatele difera de fiecare data
     int nr_alfabetice = alegere_nr_alfabetice(lfsr, min_alfabetice, max_alfabetice);
     int nr_numerice = alegere_nr_numerice(lfsr, min_numerice, max_numerice);
-    int nr_speciale = alegere_nr_speciale(lfsr, min_speciale, max_speciale);
+    int nr_speciale = total_caractere - nr_alfabetice - nr_numerice;
 
+    if(nr_speciale < min_speciale || nr_speciale > max_speciale)
+    {
+        std::cout << "incearca alta combinatie" << '\n';
 
+        return 1;
+    }
 
     if(total_caractere < min_alfabetice + min_numerice + min_speciale)//erori introducere date
     {
@@ -195,7 +215,8 @@ int main()
         parola[i] = parola[j];
         parola[j] = temp;
     }
+    std::string parola_finala = fct_separator(parola, separator, nr_separator);
 
-    std::cout << "parola nr." << i + 1 << ": "<< parola << '\n';
+    std::cout << "parola nr." << i + 1 << ": "<< parola_finala << '\n';
     }  
 }
